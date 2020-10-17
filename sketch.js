@@ -11,7 +11,8 @@ function preload()
 function setup() {
   createCanvas(500,500);
   dog = createSprite(250,300,100,50);
-  dog.addImage(dogImage);
+  dog.addImage("normalDog",dogImage);
+  dog.addImage("happyDog",happyDogImage);
   dog.scale = 0.5;
 
   database = firebase.database();
@@ -26,11 +27,12 @@ function setup() {
 
 function draw() {  
   background(46, 139, 87);
-  drawSprites();
-  if(keyWentDown(UP_ARROW)){
+  
+  if(keyDown(UP_ARROW)){
+    dog.changeImage("happyDog",happyDogImage);
     writeStock(foodS);
-    dog.addImage(happyDogImage);
    }
+   drawSprites();
   textSize(20);
   fill("white");
   strokeWeight(4);
